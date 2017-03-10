@@ -4,25 +4,21 @@ Created on Feb 27, 2017
 
 @author: DELL
 '''
-from hotshot.log import ENTER
-import subprocess
-import sys
-import unittest
 
-from selenium import selenium
-from Tkconstants import BROWSE
+import subprocess
+import unittest
 from website.actions.Common import logWarning, logInfo, getCurentSrcPath,\
     logFail, logPass, wait
 import time
 import os
 from website.modules.Config import Config
-from webdriver.common.keys import Keys
-from webdriver.support.select import Select
-from webdriver.support.wait import WebDriverWait
-from webdriver.common.desired_capabilities import DesiredCapabilities
-from webdriver.common.action_chains import ActionChains
-from webdriver.chrome.options import Options
-import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class AbstractPage(unittest.TestCase, Config):
     browser = None
@@ -64,7 +60,8 @@ class AbstractPage(unittest.TestCase, Config):
                     chrome_option = Options()
                     chrome_option.add_argument("--test-type")
                     chrome_option.add_argument("--verbose")
-                    AbstractPage.browser = webdriver.Chrome(executable_path = str(getCurentSrcPath() + "../../../../../resources/chromedriver.exe").replace("/","\\"), chrome_options = chrome_option)
+                    AbstractPage.browser = webdriver.Chrome(executable_path = str(getCurentSrcPath() + "/../../resources/chromedriver.exe").replace("/","\\"), chrome_options = chrome_option)
+                
                 elif driver == "Ie":
                     caps = DesiredCapabilities.INTERNETEXPLORER
                     caps['ignoreZoomSetting'] = True
@@ -985,7 +982,7 @@ class AbstractPage(unittest.TestCase, Config):
             # Run command
             p = subprocess.Popen(commandLine, shell=True, stdout = subprocess.PIPE)
             stdout, stderr = p.communicate()
-            
+            print stderr
             if "Match" in str(stdout):
                 return True
             return False
@@ -1067,7 +1064,7 @@ class AbstractPage(unittest.TestCase, Config):
             status = element.is_displayed()
             return status
         except Exception, e:
-#             logInfo(str(e))
+            logInfo(str(e))
             return None
             
     ##############################################################################################################
@@ -1116,8 +1113,6 @@ class AbstractPage(unittest.TestCase, Config):
     def getPositionOfElement(self, element_xPath):
         try:
             element = self.getElementByXPath(element_xPath)
-            a = element.location['x']
-            b = element.location['y']
             return element.location['x'], element.location['y']
         except Exception, e:
             logInfo(str(e))

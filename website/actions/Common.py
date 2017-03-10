@@ -21,7 +21,7 @@ import time
 #####################################################################################
 def getCurentSrcPath():
     # The current src path will be returned .../overdrive/
-    return str(str(os.environ['ANKI_PATH']).replace("\\", "/")).split("overdrive/")[0] + "overdrive/"
+    return str(str(os.environ['ENIGMA_PATH']).replace("\\", "/"))
 
 #####################################################################################
 # Print log with type is info
@@ -34,7 +34,7 @@ def getCurentSrcPath():
 def logInfo(log):
     log = getCurrentDateTime() + "\t[INFO]\t" + log
     print log
-    writeLogFile(os.environ['ANKI_LOG_PATH'], log)
+    writeLogFile(os.environ['ENIGMA_LOG_PATH'], log)
     
 #####################################################################################
 # Print log with type is warning
@@ -46,11 +46,11 @@ def logInfo(log):
 #####################################################################################
 def logWarning(log):
     # Calculate warnings number
-    os.environ['ANKI_WARNINGS'] = str(int(os.environ['ANKI_WARNINGS']) + 1)
+    os.environ['ENIGMA_WARNINGS'] = str(int(os.environ['ENIGMA_WARNINGS']) + 1)
     
     log = getCurrentDateTime() + "\t[WARNING]\t" + log
     print log
-    writeLogFile(os.environ['ANKI_LOG_PATH'], log)
+    writeLogFile(os.environ['ENIGMA_LOG_PATH'], log)
 
 #####################################################################################
 # Print log with type is bug
@@ -63,11 +63,11 @@ def logWarning(log):
 def logBug(log, number = 1):
     # Calculate warnings number
     for i in range(0, number):
-        os.environ['ANKI_WARNINGS'] = str(int(os.environ['ANKI_WARNINGS']) + 1)
+        os.environ['ENIGMA_WARNINGS'] = str(int(os.environ['ENIGMA_WARNINGS']) + 1)
     
     log = getCurrentDateTime() + "\t[BUG]\t" + log
     print log
-    writeLogFile(os.environ['ANKI_LOG_PATH'], log)
+    writeLogFile(os.environ['ENIGMA_LOG_PATH'], log)
     
 #####################################################################################
 # Print log with type is fail
@@ -80,11 +80,11 @@ def logBug(log, number = 1):
 def logFail(log, number = 1):
     # Calculate errors number
     for i in range(0, number):
-        os.environ['ANKI_ERRORS'] = str(int(os.environ['ANKI_ERRORS']) + 1)
+        os.environ['ENIGMA_ERRORS'] = str(int(os.environ['ENIGMA_ERRORS']) + 1)
     
     log = getCurrentDateTime() + "\t" + converLogToFail(log)
     print log
-    writeLogFile(os.environ['ANKI_LOG_PATH'], log)
+    writeLogFile(os.environ['ENIGMA_LOG_PATH'], log)
     
 #####################################################################################
 # Convert log to type is fail
@@ -108,7 +108,7 @@ def converLogToFail(log):
 def logPass(log):
     log = getCurrentDateTime() + "\t[PASSED]\t" + log
     print log
-    writeLogFile(os.environ['ANKI_LOG_PATH'], log)
+    writeLogFile(os.environ['ENIGMA_LOG_PATH'], log)
     
 #####################################################################################
 # Wait for xx seconds

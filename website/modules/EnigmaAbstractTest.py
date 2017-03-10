@@ -10,16 +10,17 @@ from website.modules.Config import Config
 from website.actions.EnigmaFactoryPage import EnigmaFactoryPage
 from website.actions.Common import generateUniqueValue, logWarning
 
-class AnkiAbstractTest(Config):
+class EnigmaAbstractTest(Config):
     
     def __init__(self):
         Config.__init__(self)
         
         # Set current path to environment
-        os.environ['ANKI_PATH'] = (os.path.dirname(os.path.realpath(__file__)))
-        
-        os.environ['ANKI_ERRORS'] = "0"
-        os.environ['ANKI_WARNINGS'] = "0"
+        os.environ['ENIGMA_PATH'] = (os.path.dirname(os.path.realpath(__file__)))
+        print os.environ['ENIGMA_PATH'].replace("\\","/")+ "../../resources/chromedriver.exe"
+        print os.path.isfile(os.environ['ENIGMA_PATH'].replace("\\","/")+ "/../../resources/chromedriver.exe")
+        os.environ['ENIGMA_ERRORS'] = "0"
+        os.environ['ENIGMA_WARNINGS'] = "0"
     
         # Generate log file path
         self.generateLogFilePath()
@@ -40,7 +41,7 @@ class AnkiAbstractTest(Config):
                 logFileName = "..." + str(logFileName)[-121:]
                 
             # Set current path to environment
-            os.environ['ANKI_LOG_PATH'] = str(os.environ['ANKI_PATH']).replace("\\", "/") + "/../../../../../../_logs/" + logFileName
+            os.environ['ENIGMA_LOG_PATH'] = str(os.environ['ENIGMA_PATH']).replace("\\", "/") + "/../../../../../../_logs/" + logFileName
             
         except Exception, e:
             logWarning(str(e))

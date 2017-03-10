@@ -10,14 +10,8 @@ verificationErrors = 0
 
 class Config():
     def __init__(self):
-        self.cfSelectedLanguage = os.environ.get('SELECT_LANGUAGE',"US-CA-UK-DE")
-        self.cfRanLanguage = os.environ.get('RAN_LANGUAGE','US')
-        self.cfRunFullLanguages = os.environ.setdefault('RUN_FULL_LANGUAGES',"False")
-        self.cfDriver = os.environ.get('SELENIUM_DEVICE',"Firefox") #Firefox, Chrome, Ie
-        self.cfCheckOrder = os.environ.get('CHECK_ORDER',"True")
-        self.cfRequiredRun = os.environ.get('REQUIRED_RUN',"False")
+        self.cfDriver = os.environ.get('SELENIUM_DEVICE',"Chrome") #Firefox, Chrome, Ie
         self.cfRequiredSite = os.environ.get('REQUIRED_SITE',"Prod")
-        self.cfSikuliIDEPathFile = "C:\\Program Files (x86)\\Sikuli X\\Sikuli-IDE.bat"
         self.cfLongTimeWait = 180
         self.cfNormalTimeWait = 120
         self.cfShortTimeWait = 60
@@ -25,18 +19,12 @@ class Config():
         self.cfPageLoadTimeout = 600
         self.cfShortTime = 20
         
-        # Product Price
-        self.cfProductPriceSTARTERKIT = "$149.99"
-        self.cfUKProductPriceSTARTERKIT = u"£149.99"
-        self.cfCAProductPriceSTARTERKIT = "CA$199.99"
-        self.cfDEProductPriceSTARTERKIT = u"179,99 €"
-        self.cfATProductPriceSTARTERKIT = u"179,99 €"
-        self.cfCHProductPriceSTARTERKIT = u"179,99 €"
+        # Enigma URLs
+        self.cfProdAdminUrl = "http://enigma:cie1yiVa@admin-dev.enigma.bz"
         
         # Estimated Tax
         self.cfUSProductTax = "$13.87"
         self.cfUKProductTax = u"£25.00"
-        self.cfDEProductTax = u"28,74 €"
         
         # Month Values
         self.cfMonthCheckoutList = ['1 - January', '2 - February', '3 - March', '4 - April', '5 - May', '6 - June', '7 - July',

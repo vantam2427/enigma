@@ -5,14 +5,15 @@ Created on Mar 9, 2017
 '''
 import os
 import unittest
+from website.modules.EnigmaAbstractTest import EnigmaAbstractTest
 
 
-class BaseAccessoriesGeneralTestCase(unittest.TestCase, AnkiAbstractTest):
+class BaseAdmin(unittest.TestCase, EnigmaAbstractTest):
     def setUp(self):
-        AnkiAbstractTest.__init__(self)
+        EnigmaAbstractTest.__init__(self)
         
         # Navigate to Home page
-        self.homePage.navigateToWeb(self.cfTrackLandingUrl, self.cfDriver)
+        self.loginPage.navigateToWeb(self.cfProdAdminUrl, self.cfDriver)
     
     def tearDown(self):
         self.homePage.closeBrowser()
