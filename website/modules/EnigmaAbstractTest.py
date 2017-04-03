@@ -17,8 +17,6 @@ class EnigmaAbstractTest(Config):
         
         # Set current path to environment
         os.environ['ENIGMA_PATH'] = (os.path.dirname(os.path.realpath(__file__)))
-        print os.environ['ENIGMA_PATH'].replace("\\","/")+ "../../resources/chromedriver.exe"
-        print os.path.isfile(os.environ['ENIGMA_PATH'].replace("\\","/")+ "/../../resources/chromedriver.exe")
         os.environ['ENIGMA_ERRORS'] = "0"
         os.environ['ENIGMA_WARNINGS'] = "0"
     

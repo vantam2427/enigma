@@ -15,6 +15,7 @@ from website.modules.Config import Config
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -133,24 +134,10 @@ class AbstractPage(unittest.TestCase, Config):
             AbstractPage.Browser().implicitly_wait(self.cfImplicitlyTimeWait)
             
             AbstractPage.Browser().get(url)
-            
             if self.cfDriver == "Chrome":
                 # Handle issue webdriver is performing the action on webelement while page is getting loaded
                 self.waitForPageLoadedByUsingJavascript()
-            
-            # Fix problem with IE security certificate when accessing HTTPS URLs
-            if AbstractPage.Browser().title == 'Certificate Error: Navigation Blocked':
-                AbstractPage.Browser().get("javascript:document.getElementById('overridelink').click();")
-            
-            # Handle to disable Subscript form & DE popup
-            if disableBronto == True:
-                btnClose = "//div[@id='bronto-modal']//a[@class='close-reveal-modal']"
-                btnCloseDE = "//button[@class='agree-button']"
-                if self.doesElementDisplay(btnClose, 3): 
-                    self.click(btnClose)
-                if self.doesElementDisplay(btnCloseDE, 1): 
-                    self.click(btnCloseDE)
-            
+
             logInfo("Navigate to %s successfully" % url)
             return AbstractPage.Browser()
         except Exception, e:
@@ -840,6 +827,15 @@ class AbstractPage(unittest.TestCase, Config):
         if self.Browser() != None:
             self.Browser().switch_to_window(self.Browser().window_handles[-1])
     
+    ##############################################################################################################
+    # Switch to the latest window
+    # @author vinh.cong.tran
+    ##############################################################################################################
+    def switchToAlert(self):
+        wait(1)
+        if self.Browser() != None:
+            self.Browser().switch_to_alert()
+            
     ##############################################################################################################
     # Use Sendkey enter to click on an element by xpath
     # @param xPathPath: the xpath of element

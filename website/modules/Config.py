@@ -20,7 +20,7 @@ class Config():
         self.cfShortTime = 20
         
         # Enigma URLs
-        self.cfProdAdminUrl = "http://enigma:cie1yiVa@admin-dev.enigma.bz"
+        self.cfProdAdminUrl = "http://enigma:cie1yiVa@www.admin-dev.enigma.bz"
         
         # Estimated Tax
         self.cfUSProductTax = "$13.87"
